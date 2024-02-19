@@ -1,0 +1,35 @@
+<?php
+
+declare(strict_types=1);
+
+function is_empty_inputs(string $username, string $userpassword, string $email){
+    if(empty($username) || empty($userpassword) || empty($email)){
+        return true;
+    }else{
+        return false;
+    }
+}
+function is_invalid_email(string $email){
+    if(!filter_var($email, FILTER_VALIDATE_EMAIL)){
+        return true;
+    }else{
+        return false;
+    }
+}
+function is_username_taken(object $pdo, string $username){
+    if(get_username($pdo, $username)){
+        return true;
+    }else{
+        return false;
+    }
+}
+function is_email_registered(object $pdo, string $email){
+    if(get_email($pdo, $email)){
+        return true;
+    }else{
+        return false;
+    }
+}
+function create_user(object $pdo, string $username, string $userpassword, string $email){
+    set_user($pdo, $username, $userpassword, $email);
+}
